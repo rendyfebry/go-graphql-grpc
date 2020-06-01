@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+option go_package = ".;product";
+
+package product;
+
+service ProductSvc {
+  rpc GetProduct(GetProductRequest) returns (GetProductResponse) {}
+}
+
+message GetProductRequest {}
+message GetProductResponse { repeated Product products = 1; }
+
+message Product {
+  int32 id = 1;
+  string name = 2;
+}
