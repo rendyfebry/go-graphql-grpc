@@ -9,7 +9,7 @@ import (
 	"github.com/graph-gophers/graphql-go/relay"
 	"google.golang.org/grpc"
 
-	"github.com/rendyfebry/go-graphql-grpc/graphql/resolver"
+	"github.com/rendyfebry/go-graphql-grpc/graphql/internal/resolver"
 )
 
 func main() {
