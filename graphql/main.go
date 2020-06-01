@@ -7,13 +7,10 @@ import (
 
 	graphql "github.com/graph-gophers/graphql-go"
 	"github.com/graph-gophers/graphql-go/relay"
+	"google.golang.org/grpc"
+
+	"github.com/rendyfebry/go-graphql-grpc/graphql/resolver"
 )
-
-type query struct{}
-
-func (_ *query) Hello() string {
-	return "Hello, world!"
-}
 
 func main() {
 	s, err := getSchema("./api/schema.graphql")
@@ -21,7 +18,14 @@ func main() {
 		panic(err)
 	}
 
-	schema := graphql.MustParseSchema(s, &query{})
+	// Set up a connection to the server.
+	conn, err := grpc.Dial("localhost:50051", grpc.WithInsecure(), grpc.WithBlock())
+	if err != nil {
+		log.Fatalf("did not connect: %v", err)
+	}
+	defer conn.Close()
+
+	schema := graphql.MustParseSchema(s, resolver.NewResolver(conn))
 	http.Handle("/query", &relay.Handler{
 		Schema: schema,
 	})
