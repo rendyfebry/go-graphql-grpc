@@ -2,7 +2,6 @@ package product
 
 import (
 	"context"
-	"fmt"
 
 	pb "github.com/rendyfebry/go-graphql-grpc/product/api"
 )
@@ -35,8 +34,6 @@ func (gs *grpcServer) GetProduct(ctx context.Context, req *pb.GetProductRequest)
 			},
 		},
 	}
-
-	fmt.Println(res)
 
 	return res, nil
 }
