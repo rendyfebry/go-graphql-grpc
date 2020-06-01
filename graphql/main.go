@@ -19,7 +19,7 @@ func main() {
 	}
 
 	// Set up a connection to the server.
-	conn, err := grpc.Dial("localhost:50051", grpc.WithInsecure(), grpc.WithBlock())
+	conn, err := grpc.Dial("localhost:50051", grpc.WithInsecure())
 	if err != nil {
 		log.Fatalf("did not connect: %v", err)
 	}
@@ -30,6 +30,8 @@ func main() {
 		Schema: schema,
 	})
 
+	log.Println("GraphQL service started!")
+	log.Println("URL: localhost:8080")
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }
 

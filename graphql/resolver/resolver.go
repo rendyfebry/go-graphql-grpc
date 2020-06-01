@@ -2,7 +2,6 @@ package resolver
 
 import (
 	"context"
-	"fmt"
 
 	"google.golang.org/grpc"
 
@@ -35,8 +34,6 @@ func (r *Resolver) Products(ctx context.Context) ([]*ProductResolver, error) {
 	if err != nil {
 		return nil, err
 	}
-
-	fmt.Println(productList)
 
 	for _, p := range productList.Products {
 		s := &ProductResolver{
