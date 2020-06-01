@@ -2,6 +2,13 @@ schema {
 	query: Query
 }
 
+type Product {
+	id: Int
+	name: String
+	price: Int
+}
+
 type Query {
 	hello: String!
+	products: [Product!]!
 }
