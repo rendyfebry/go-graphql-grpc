@@ -2,6 +2,7 @@ package product
 
 import (
 	"context"
+	"fmt"
 
 	pb "github.com/rendyfebry/go-graphql-grpc/product/api"
 )
@@ -18,11 +19,24 @@ func (gs *grpcServer) GetProduct(ctx context.Context, req *pb.GetProductRequest)
 	res := &pb.GetProductResponse{
 		Products: []*pb.Product{
 			&pb.Product{
-				Id:   1,
-				Name: "Product 1",
+				Id:    1,
+				Name:  "Product A",
+				Price: 1000,
+			},
+			&pb.Product{
+				Id:    2,
+				Name:  "Product B",
+				Price: 2500,
+			},
+			&pb.Product{
+				Id:    3,
+				Name:  "Product C",
+				Price: 5000,
 			},
 		},
 	}
+
+	fmt.Println(res)
 
 	return res, nil
 }
