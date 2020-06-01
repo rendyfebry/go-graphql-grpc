@@ -32,9 +32,6 @@ func main() {
 		panic(err)
 	}
 
-	fmt.Println("Product :", productHost)
-	fmt.Println("Product :", productPort)
-
 	// Set up a connection to the server.
 	grpcAddress := fmt.Sprintf("%s:%s", productHost, productPort)
 	conn, err := grpc.Dial(grpcAddress, grpc.WithInsecure())
